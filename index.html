@@ -9,6 +9,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@300;700&display=swap"
         rel="stylesheet">
+    <!-- Simpleicons for tech icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <style>
         :root {
             --cyan: #00f2fe;
@@ -20,6 +22,7 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--dark);
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         h1,
@@ -29,9 +32,20 @@
         }
 
         .glass-nav {
-            background: rgba(5, 5, 5, 0.8);
+            background: rgba(5, 5, 5, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Canvas Background / Pattern */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
         }
 
         .text-cyan-glow {
@@ -43,11 +57,22 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .gradient-card:hover {
             border-color: var(--cyan);
             transform: translateY(-5px);
+        }
+
+        .tech-icon {
+            font-size: 2rem;
+            transition: color 0.3s;
+            color: #666;
+        }
+
+        .tech-icon:hover {
+            color: var(--cyan);
         }
 
         .btn-primary {
@@ -59,13 +84,8 @@
             opacity: 0.9;
         }
 
-        .bg-grid {
-            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
-            background-size: 40px 40px;
-        }
-
         .member-photo {
-            filter: grayscale(100%) contrast(1.1);
+            filter: grayscale(100%);
             transition: filter 0.3s ease;
         }
 
@@ -75,13 +95,15 @@
     </style>
 </head>
 
-<body class="text-white bg-grid">
+<body class="text-white">
+
+    <canvas id="bg-canvas"></canvas>
 
     <!-- Header -->
     <nav class="fixed w-full z-50 glass-nav px-8 py-2 flex justify-between items-center">
         <div class="flex items-center">
-            <!-- Replace 'logo.png' with your actual logo file path -->
-            <img src="./assets/logo.png" alt="Stack Intelligence Logo" style="height: 120px;" class="object-contain">
+            <!-- Height set to 120px as requested -->
+            <img src="./assets/logo.png" alt="Stack Intelligence Logo" style="height: 100px;" class="object-contain">
         </div>
         <div class="hidden md:flex space-x-10 text-[10px] font-black tracking-[0.2em] uppercase text-gray-400">
             <a href="#ai" class="hover:text-cyan-400 transition">AI Core</a>
@@ -115,7 +137,7 @@
         </div>
     </section>
 
-    <!-- AI Core Section -->
+    <!-- AI Core -->
     <section id="ai" class="py-32 px-8 md:px-24">
         <div class="mb-20 text-center">
             <h2 class="text-5xl font-black uppercase mb-4 tracking-tighter italic">01 // AI Core</h2>
@@ -170,107 +192,224 @@
         </div>
 
         <!-- Tech Stack -->
-        <div id="stack" class="pt-32 px-8 md:px-24 text-center">
-            <h2 class="text-xs font-black tracking-[0.5em] uppercase text-gray-500 mb-10">Optimized Tech Stack</h2>
-            <div class="flex flex-wrap justify-center gap-10 opacity-40 grayscale hover:grayscale-0 transition-all">
-                <span class="text-xl font-bold">PYTHON</span>
-                <span class="text-xl font-bold">PYTORCH</span>
-                <span class="text-xl font-bold">RUST</span>
-                <span class="text-xl font-bold">TYPESCRIPT</span>
-                <span class="text-xl font-bold">DOCKER</span>
-                <span class="text-xl font-bold">KUBERNETES</span>
-                <span class="text-xl font-bold">FLUTTER</span>
+        <section id="stack" class="py-32 px-8 md:px-24 text-center">
+            <h2 class="text-xs font-black tracking-[0.5em] uppercase text-gray-500 mb-20">Optimized Tech Stack</h2>
+            <div class="flex flex-col gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+
+                <!-- AI & Machine Learning -->
+                <div>
+                    <h4 class="text-cyan-400 text-xs font-black uppercase tracking-[0.3em] mb-10 text-center">// AI &
+                        Machine Learning</h4>
+                    <div class="flex flex-wrap gap-10 justify-center">
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-python-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Python</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-pytorch-original tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">PyTorch</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-tensorflow-original tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Tensorflow</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-pandas-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Pandas</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i class="devicon-numpy-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">NumPy</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-jupyter-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Jupyter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Ecosystem -->
+                <div>
+                    <h4 class="text-cyan-400 text-xs font-black uppercase tracking-[0.3em] mb-10 text-center">// Web
+                        Ecosystem</h4>
+                    <div class="flex flex-wrap gap-10 justify-center max-w-5xl mx-auto">
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-react-original tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">React</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-nextjs-original-wordmark tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Next.js</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i class="devicon-vuejs-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Vue</span></div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-angularjs-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Angular</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-javascript-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">JS</span></div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-typescript-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">TS</span></div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-nodejs-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Node</span></div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-express-original tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Express</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-nestjs-original tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">NestJS</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i class="devicon-php-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">PHP</span></div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-laravel-original tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Laravel</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-symfony-original tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Symfony</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database & Backend -->
+                <div>
+                    <h4 class="text-cyan-400 text-xs font-black uppercase tracking-[0.3em] mb-10 text-center">// Data &
+                        Backend</h4>
+                    <div class="flex flex-wrap gap-10 justify-center">
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-postgresql-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Postgres</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-mongodb-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">MongoDB</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i class="devicon-mysql-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">MySQL</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i class="devicon-redis-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Redis</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-sequelize-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Sequelize</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-graphql-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">GraphQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infrastructure & Mobility -->
+                <div>
+                    <h4 class="text-cyan-400 text-xs font-black uppercase tracking-[0.3em] mb-10 text-center">//
+                        Infrastructure & Mobility</h4>
+                    <div class="flex flex-wrap gap-10 justify-center">
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-amazonwebservices-plain-wordmark tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">AWS</span></div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-googlecloud-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">GCP</span></div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-docker-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Docker</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-kubernetes-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">K8s</span></div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-flutter-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Flutter</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-react-original tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">RN</span></div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-android-plain tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Android</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-3"><i
+                                class="devicon-apple-original tech-icon"></i><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">iOS</span></div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </section>
 
-
-
-    <!-- About Us Section -->
+    <!-- About Us -->
     <section id="about" class="py-32 px-8 md:px-24">
         <div class="mb-20">
             <h2 class="text-5xl font-black uppercase mb-4 tracking-tighter italic">03 // About Us</h2>
-            <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">The Core Engineering Team</p>
+            <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">Core Team</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-
-            <!-- Member 1 -->
+            <!-- Cards repeated for 5 members with placeholders -->
             <div class="gradient-card overflow-hidden">
-                <img src="member1.jpg" alt="Team Member" class="w-full h-64 object-cover member-photo">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" alt="Member"
+                    class="w-full h-64 object-cover member-photo">
                 <div class="p-6">
-                    <h4 class="font-black uppercase text-sm mb-1 tracking-tighter">Name Placeholder</h4>
-                    <p class="text-cyan-400 text-[10px] font-black uppercase mb-3 tracking-widest">CEO / Founder</p>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Introduction about the core member and their
-                        expertise in AI/Software.</p>
+                    <h4 class="font-black uppercase text-sm mb-1">Founder</h4>
+                    <p class="text-[11px] text-gray-500">Expertise in AI/ML Strategy.</p>
                 </div>
             </div>
-
-            <!-- Member 2 -->
             <div class="gradient-card overflow-hidden">
-                <img src="member2.jpg" alt="Team Member" class="w-full h-64 object-cover member-photo">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400" alt="Member"
+                    class="w-full h-64 object-cover member-photo">
                 <div class="p-6">
-                    <h4 class="font-black uppercase text-sm mb-1 tracking-tighter">Name Placeholder</h4>
-                    <p class="text-cyan-400 text-[10px] font-black uppercase mb-3 tracking-widest">CTO</p>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Technical lead focused on high-scale systems
-                        and ML architecture.</p>
+                    <h4 class="font-black uppercase text-sm mb-1">CTO</h4>
+                    <p class="text-[11px] text-gray-500">Architecture Lead.</p>
                 </div>
             </div>
-
-            <!-- Member 3 -->
             <div class="gradient-card overflow-hidden">
-                <img src="member3.jpg" alt="Team Member" class="w-full h-64 object-cover member-photo">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400" alt="Member"
+                    class="w-full h-64 object-cover member-photo">
                 <div class="p-6">
-                    <h4 class="font-black uppercase text-sm mb-1 tracking-tighter">Name Placeholder</h4>
-                    <p class="text-cyan-400 text-[10px] font-black uppercase mb-3 tracking-widest">Lead AI Researcher
-                    </p>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Specializing in NLP and custom neural network
-                        optimization.</p>
+                    <h4 class="font-black uppercase text-sm mb-1">AI Lead</h4>
+                    <p class="text-[11px] text-gray-500">Neural Network Specialist.</p>
                 </div>
             </div>
-
-            <!-- Member 4 -->
             <div class="gradient-card overflow-hidden">
-                <img src="member4.jpg" alt="Team Member" class="w-full h-64 object-cover member-photo">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400" alt="Member"
+                    class="w-full h-64 object-cover member-photo">
                 <div class="p-6">
-                    <h4 class="font-black uppercase text-sm mb-1 tracking-tighter">Name Placeholder</h4>
-                    <p class="text-cyan-400 text-[10px] font-black uppercase mb-3 tracking-widest">Head of Dev</p>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Managing web and mobile ecosystems for
-                        enterprise clients.</p>
+                    <h4 class="font-black uppercase text-sm mb-1">Head of Dev</h4>
+                    <p class="text-[11px] text-gray-500">Full-Stack Engineer.</p>
                 </div>
             </div>
-
-            <!-- Member 5 -->
             <div class="gradient-card overflow-hidden">
-                <img src="member5.jpg" alt="Team Member" class="w-full h-64 object-cover member-photo">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400" alt="Member"
+                    class="w-full h-64 object-cover member-photo">
                 <div class="p-6">
-                    <h4 class="font-black uppercase text-sm mb-1 tracking-tighter">Name Placeholder</h4>
-                    <p class="text-cyan-400 text-[10px] font-black uppercase mb-3 tracking-widest">Lead UX Architect</p>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Ensuring intelligence is delivered via
-                        world-class user interfaces.</p>
+                    <h4 class="font-black uppercase text-sm mb-1">UX Architect</h4>
+                    <p class="text-[11px] text-gray-500">Interface Specialist.</p>
                 </div>
             </div>
-
         </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-40 px-8 md:px-24 text-center border-t border-white/5">
+    <section id="contact" class="py-40 px-8 md:px-24 text-center border-t border-white/5  bg-white/5">
         <h2 class="text-6xl md:text-8xl font-black tracking-tighter mb-10 italic">READY TO <br> <span
                 class="text-cyan-400">INTELLIGIZE?</span></h2>
-        <a href="mailto:rainbowsprinklescutie@gmail.com"
+        <a href="mailto:hello@stackintelligence.ai"
             class="text-2xl font-bold border-b-4 border-cyan-400 pb-2">hello@stackintelligence.ai</a>
     </section>
 
-    <!-- Footer -->
     <footer
         class="py-10 px-8 md:px-24 border-t border-white/5 flex justify-between items-center text-[10px] text-gray-600 uppercase font-black tracking-widest">
         <div>© 2026 Stack Intelligence</div>
-        <div class="flex gap-6">
-            <a href="#">Github</a>
-            <a href="#">LinkedIn</a>
-        </div>
+        <div class="flex gap-6"><a href="#">Github</a><a href="#">LinkedIn</a></div>
     </footer>
 
+    <script src="./assets/js/background.js"></script>
 </body>
 
 </html>
