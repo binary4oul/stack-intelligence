@@ -18,6 +18,8 @@ class Dot {
         this.y = Math.random() * canvas.height;
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
+        // Added a radius property for easy adjustments
+        this.radius = 2.8; 
     }
     update() {
         this.x += this.vx;
@@ -28,7 +30,8 @@ class Dot {
     draw() {
         ctx.fillStyle = '#00f2fe';
         ctx.beginPath();
-        ctx.arc(this.x, this.y, 1, 0, Math.PI * 2);
+        // Updated radius from 1 to this.radius (2.5)
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fill();
     }
 }
